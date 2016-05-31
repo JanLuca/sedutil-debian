@@ -1,0 +1,20 @@
+Source: sedutil
+Section: utils
+Priority: optional
+Maintainer: Jan Luca Naumann <j.naumann@fu-berlin.de>
+Build-Depends: debhelper (>=9)
+Standards-Version: 3.9.8
+Homepage: https://github.com/Drive-Trust-Alliance/sedutil
+Vcs-Git: https://github.com/JanLuca/sedutil-debian.git
+Vcs-Browser: https://github.com/JanLuca/sedutil-debian
+
+Package: sedutil
+Architecture: amd64 i386
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Tool to use TCG Opal 2.0 compatible Self Encrypting Drives (SED)
+ sedutil a utility to manage self encrypting drives that conform
+ to the Trusted Computing Group (TCG) OPAL 2.0 SSC specification.
+ .
+ This program and it's accompanying Pre-Boot Authorization image
+ allow you to enable the locking in SED on bios machines.

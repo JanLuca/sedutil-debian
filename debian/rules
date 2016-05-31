@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+# You must remove unused comment lines for the released package.
+export DH_VERBOSE = 1
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	rm -f linux/Version.h
+	rm -rf buildPBAscripts
+	rm -f buildPBAscripts.tar.gz
+	dh_auto_clean --buildsystem=makefile -- -C linux/CLI clean CONF=Release_i686
+	dh_auto_clean --buildsystem=makefile -- -C linux/CLI clean CONF=Release_x86_64
+
+override_dh_auto_build:
+	dh_auto_build --buildsystem=makefile -- -C linux/CLI CONF=Release_$(DEB_TARGET_GNU_CPU)
+	mkdir -p buildPBAscripts
+	cp -a images buildPBAscripts
+	cp -a LinuxPBA buildPBAscripts
+	tar -cf buildPBAscripts.tar buildPBAscripts
+	gzip -n buildPBAscripts.tar
+
+override_dh_auto_install:
+	dh_auto_install
+	dh_install linux/CLI/dist/Release_$(DEB_TARGET_GNU_CPU)/GNU-Linux/sedutil-cli /usr/sbin

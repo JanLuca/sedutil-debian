@@ -1,0 +1,12 @@
+sedutil (1.12-1) unstable; urgency=low
+
+  * Initial release. Closes: #825864
+  * Cherry-pick commit c4c249f from upstream
+  * Add config in /etc/sysctl.d to set libata.allow_tpm=1
+  * Create .tar.gz file with the scripts to create PBA and copy it into doc dir
+  * Fix bug with new NVMe interface in Linux 4.4 (see patch in debian/patches)
+  * Fix problem with flags in Makefile (see patch in debian/patches)
+  * Add options und URL to debian/watch
+  * Use hardening options for the build
+
+ -- Jan Luca Naumann <j.naumann@fu-berlin.de>  Tue, 31 May 2016 23:13:27 +0200

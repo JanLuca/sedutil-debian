@@ -1,0 +1,72 @@
+Description: Modify Makefile to support flags from env
+ The Makefile of the project does not support flags like
+ CFLAGS from the env. This is a problem since the debhelper
+ tools set their flags in a env variable and not as command
+ line flags for make.
+ .
+ This patch modifies the Makefiles to use VAR+=... instead of
+ VAR=... so the env is used, too.
+Author: Jan Luca Naumann <j.naumann@fu-berlin.de>
+Bug: https://github.com/Drive-Trust-Alliance/sedutil/issues/60
+Forwarded: no
+Last-Update: 2016-06-04
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/linux/CLI/nbproject/Makefile-Release_i686.mk
++++ b/linux/CLI/nbproject/Makefile-Release_i686.mk
+@@ -60,20 +60,20 @@
+ 
+ 
+ # C Compiler Flags
+-CFLAGS=-m32 -Wall
++CFLAGS+=-m32 -Wall
+ 
+ # CC Compiler Flags
+-CCFLAGS=-m32 -Wall
+-CXXFLAGS=-m32 -Wall
++CCFLAGS+=-m32 -Wall
++CXXFLAGS+=-m32 -Wall
+ 
+ # Fortran Compiler Flags
+-FFLAGS=-Wall
++FFLAGS+=-Wall
+ 
+ # Assembler Flags
+-ASFLAGS=
++ASFLAGS+=
+ 
+ # Link Libraries and Options
+-LDLIBSOPTIONS=
++LDLIBSOPTIONS+=
+ 
+ # Build Targets
+ .build-conf: ${BUILD_SUBPROJECTS}
+--- a/linux/CLI/nbproject/Makefile-Release_x86_64.mk
++++ b/linux/CLI/nbproject/Makefile-Release_x86_64.mk
+@@ -60,20 +60,20 @@
+ 
+ 
+ # C Compiler Flags
+-CFLAGS=-m64 -Wall
++CFLAGS+=-m64 -Wall
+ 
+ # CC Compiler Flags
+-CCFLAGS=-m64 -Wall
+-CXXFLAGS=-m64 -Wall
++CCFLAGS+=-m64 -Wall
++CXXFLAGS+=-m64 -Wall
+ 
+ # Fortran Compiler Flags
+-FFLAGS=-Wall
++FFLAGS+=-Wall
+ 
+ # Assembler Flags
+-ASFLAGS=
++ASFLAGS+=
+ 
+ # Link Libraries and Options
+-LDLIBSOPTIONS=
++LDLIBSOPTIONS+=
+ 
+ # Build Targets
+ .build-conf: ${BUILD_SUBPROJECTS}
